@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- evenement action windows -->
+        <record model="ir.actions.act_window" id="ev_menu_action">
+           <field name="name">Evenement</field>
+           <field name="type">ir.actions.act_window</field>
+           <field name="res_model">ev.ev</field>
+           <field name="view_type">form</field>
+           <field name="view_mode">tree,form</field>
+           <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Ajouter un nouveau évènement...
+              </p>
+            </field>
+        </record>
+
+        <!-- etudiant action window 1 -->
+        <record id="etudiant_menu_action" model="ir.actions.act_window">
+            <field name="name">Vote</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">etudiant.etudiant</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Voter les étudiants...
+                </p>
+            </field>
+        </record>
+
+	
+        <!-- win action window -->
+        <record id="win_menu_action" model="ir.actions.act_window">
+            <field name="name">Resultats</field>
+            <field name="res_model">win.win</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                    Voir les résultats des votes...
+                </p>
+            </field>
+        </record>
+
+
+
+        <!--  TREE  -->
+        <!-- evenement tree view  -->
+        <record model="ir.ui.view" id="view_ev_tree">
+            <field name="name">ev.ev.tree</field>
+            <field name="model">ev.ev</field>
+            <field name="arch" type="xml">
+                <tree string="Events" >
+                    <field name="name"/>
+                    <field name="date_begin"/>
+                    <field name="date_end"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- etudiant tree view  -->
+        <record id="etudiant_tree" model="ir.ui.view">
+            <field name="name">Vote</field>
+            <field name="model">etudiant.etudiant</field>
+            <field name="arch" type="xml">
+                <tree string='Candidats'>
+                    <field name="votant" string='Votant' groups="base.user_admin" />
+                    <field name="event_name" string='Evènement Choisi'/>
+                    <field name="etd_1" string='Etudiant 1' />
+                    <field name="etd_2" string='Etudiant 2'/> 
+                    <field name="etd_3" string='Etudiant 3'/>
+                    <field name="etd_4" string='Etudiant 4'/>
+                    <field name="etd_5" string='Etudiant 5'/>
+                    <field name="etd_6" string='Etudiant 6'/>
+                    <field name="etd_7" string='Etudiant 7'/>
+                    <field name="etd_8" string='Etudiant 8'/>
+                    <field name="etd_9" string='Etudiant 9'/>
+                    <field name="etd_10" string='Etudiant 10'/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- resultats tree view -->
+        <record id="model_name_view_tree" model="ir.ui.view">
+            <field name="name">win.win.view.tree</field>
+            <field name="model">win.win</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="evenements"/>
+                    <field name="winner_1"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- FORM -->
+        <!-- win form view -->
+        <record model="ir.ui.view" id="view_ev_form">
+            <field name="name">ev.ev.form</field>
+            <field name="model">ev.ev</field>
+            <field name="arch" type="xml">
+                <form string="Events">
+                    <sheet>
+                        <div>
+                            <div class="oe_title">
+                                <label for="name" class="oe_edit_only"/>
+                                <h1><field name="name" placeholder="Nom de l'evenement"/></h1>
+                            </div>
+                            <group>
+                                <group>
+                                    <field name="date_begin"/>
+                                    <field name="date_end"/>
+                                </group>
+                            </group>
+                        </div>  
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- etudiant form view  -->
+        <record id="etd_view" model="ir.ui.view">
+            <field name="name">etd.form</field>
+            <field name="model">etudiant.etudiant</field>
+            <field name="arch" type="xml">
+                <form string="Candidat" delete="false">
+                    <sheet>
+                        <div>
+                            <h2>
+                                <p style="text-align:center;"><u>Votez vos 10 étudiants !</u></p>
+                            </h2>
+
+                            <group style="padding-left:400PX;">
+                                <field name="event_name" options="{'no_create_edit': True, 'no_open': True}" required="1" />
+                            </group>  
+
+                                <table>
+                                    <tr>
+                                        <td style="padding-left:160PX;">
+                                            <field name="etd_1" options="{'no_create_edit': True, 'no_open': True}" placeholder="Voter l'étudiant N°1"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding-left:160PX;">
+                                            <field name="etd_2" options="{'no_create_edit': True, 'no_open': True}" placeholder="Voter l'étudiant N°2"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding-left:160PX;">
+                                            <field name="etd_3" options="{'no_create_edit': True, 'no_open': True}" placeholder="Voter l'étudiant N°3"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding-left:160PX;">
+                                            <field name="etd_4" options="{'no_create_edit': True, 'no_open': True}" placeholder="Voter l'étudiant N°4"/>
+                                        </td>
+                                    </tr>
+                
+                                    <tr>
+                                        <td style="padding-left:160PX;">
+                                        <field name="etd_5" options="{'no_create_edit': True, 'no_open': True}" placeholder="Voter l'étudiant N°5"/>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td style="padding-left:160PX;">
+                                            <field name="etd_6" options="{'no_create_edit': True, 'no_open': True}" placeholder="Voter l'étudiant N°6"/>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td style="padding-left:160PX;">
+                                            <field name="etd_7" options="{'no_create_edit': True, 'no_open': True}" placeholder="Voter l'étudiant N°7"/>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td style="padding-left:160PX;">
+                                            <field name="etd_8" options="{'no_create_edit': True, 'no_open': True}" placeholder="Voter l'étudiant N°8"/>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td style="padding-left:160PX;">
+                                            <field name="etd_9" options="{'no_create_edit': True, 'no_open': True}" placeholder="Voter l'étudiant N°9"/>
+                                        </td>
+                                    </tr>
+                                        
+                                    <tr>
+                                        <td style="padding-left:160PX;">
+                                            <field name="etd_10" options="{'no_create_edit': True, 'no_open': True}" placeholder="Voter l'étudiant N°10"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- win form view -->
+        <record id="win_view" model="ir.ui.view">
+            <field name="name">win.form</field>
+            <field name="model">win.win</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+
+                        <h4 modifiers="{}">
+				            <p style="">
+                                    Résultat des votes
+				            </p>
+			            </h4>
+
+                        <group>
+                            <field name="evenements" options="{'no_create_edit': True, 'no_open': True}"/>   
+                        </group>
+
+                        <group>
+                            <field name="winner_1"/>
+                        </group>
+
+                        <br/>
+                        <h4 modifiers="{}">
+				            <p style="">
+                                    Classement sur l'évènement
+				            </p>
+			            </h4>
+                        <group>
+                            <field name="c_k_1"/>          
+                        </group>
+
+                        <group>
+                            <field name="c_k_2"/>          
+                        </group>
+
+                        <group>
+                            <field name="c_k_3"/>          
+                        </group>
+
+                        <group>
+                            <field name="c_k_4"/>          
+                        </group>
+
+
+                        <group>
+                            <field name="c_k_5"/>          
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+        <!-- MENUS -->
+        <!-- Menu principal - Votes -->
+        <menuitem id="menu" name="Votes" />
+        <!-- Menu Evenement -->
+        <menuitem name="Evènement" id="ev_menu_" action="ev_menu_action" parent="menu" groups="base.user_admin"/>
+        <!-- Menu de votes -->
+        <menuitem id="etudiant_menu_" name="Les votes" parent="menu" action="etudiant_menu_action"/>
+        <!-- Menu Voir Résultat -->
+        <menuitem id="win_menu_" name="Voir résultats" parent="menu" action="win_menu_action"/>
+
+    </data>
+</odoo>
+
+

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_etudiant_etudiant,access.etudiant.etudiant,model_etudiant_etudiant,base.group_user,1,0,1,0
+access_etudiant_etudiant_admin,access.etudiant.etudiant.admin,model_etudiant_etudiant,base.group_erp_manager,1,1,1,1
+access_win_win_admin,access.win.win.admin,model_win_win,base.group_erp_manager,1,1,1,1
+access_ev_ev,access.ev.ev,model_ev_ev,base.group_user,1,0,1,0
+access_ev_ev_admin,access.ev.ev.admin,model_ev_ev,base.group_erp_manager,1,1,1,1
